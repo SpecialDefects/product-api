@@ -14,7 +14,7 @@ export const getProducts = async (req, res, next) => {
 
         res.json({data: user?.products });
     } catch (e) {
-        e.type === "auth";
+        e.type = "auth";
         next(e);
     }
 }
@@ -33,7 +33,7 @@ export const getOneProduct = async (req, res, next) => {
 
         res.json({ data: product });
     } catch (e) {
-        e.type === "auth";
+        e.type = "auth";
         next(e);
     }
 
@@ -51,6 +51,7 @@ export const createProduct = async (req, res, next) => {
 
         res.json({ data: product });
     } catch (e) {
+        e.type = "input";
         next(e);
     }
 }
@@ -72,7 +73,7 @@ export const updateProduct = async (req, res, next) => {
 
         res.json({ data: updated });
     } catch (e) {
-        e.type === "auth";
+        e.type = "auth";
         next(e);
     }
 }
@@ -91,7 +92,7 @@ export const deleteProduct = async (req, res, next) => {
 
         res.json({ data: deleted });
     } catch (e) {
-        e.type === "auth";
+        e.type = "auth";
         next(e);
     }
 }

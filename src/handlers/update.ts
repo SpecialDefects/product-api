@@ -14,7 +14,7 @@ export const getUpdates = async (req, res, next) => {
 
         res.json({ date: user?.updates });
     } catch (e) {
-        e.type === "auth";
+        e.type = "auth";
         next(e);
     }
 }
@@ -30,7 +30,7 @@ export const getOneUpdate = async (req, res, next) => {
 
         res.json({ data: update });
     } catch (e) {
-        e.type === "input";
+        e.type = "input";
         next(e);
     }
 }
@@ -57,7 +57,7 @@ export const createUpdate = async (req, res, next) => {
 
         res.json({ data: update });
     } catch (e) {
-        e.type === "input";
+        e.type = "input";
         next(e);
     }
 }
@@ -94,12 +94,12 @@ export const updateUpdate = async (req, res, next) => {
 
             res.json({ data: updated });
         } catch (e) {
-            e.type === "input";
+            e.type = "input";
             next(e);
         }
 
     } catch (e) {
-        e.type == "input";
+        e.type = "input";
         next(e);
     }
 }
@@ -136,11 +136,11 @@ export const deleteUpdate = async (req, res, next) => {
         
             res.json({ data: deleted });
         } catch (e) {
-            e.type === "input";
+            e.type = "input";
             next(e);
         }
     } catch (e) {
-        e.type === "input";
+        e.type = "input";
         next(e);
     }
 }
