@@ -2,7 +2,7 @@ import { Router } from 'express'
 import { body, oneOf } from 'express-validator';
 import { createProduct, deleteProduct, getOneProduct, getProducts, updateProduct } from './handlers/product';
 import { createUpdate, deleteUpdate, getOneUpdate, getUpdates, updateUpdate } from './handlers/update';
-import { getOneUpdatePoint } from "./handlers/updatepoints";
+import { createUpdatePoint, deleteUpdatePoint, getOneUpdatePoint, getUpdatePoints, updateUpdatePoint } from "./handlers/updatepoints";
 import { handleInputErrors } from './modules/middleware';
 
 const router = Router();
@@ -52,11 +52,12 @@ router.post('/update',
 router.delete('/update/:id', deleteUpdate, () => {});
 
 // update point routes
-router.get('/updatepoint', getAllUpdatePoints, () => {});
-router.get('/updatepoint/:id', () => {});
+router.get('/updatepoint', getUpdatePoints, () => {});
+router.get('/updatepoint/:id', getOneUpdatePoint, () => {});
 router.put('/updatepoint/:id', 
     body("name").optional().isString(),
-    body("description").optional().isString(), 
+    body("description").optional().isString(),
+    updateUpdatePoint,
     handleInputErrors, 
     () => {});
 
@@ -65,8 +66,9 @@ router.post('/updatepoint',
     body("description").optional().isString(),
     body("updateId").exists().isString(),
     handleInputErrors, 
+    createUpdatePoint,
     () => {});
 
-router.delete('/updatepoint/:id', () => {});
+router.delete('/updatepoint/:id', deleteUpdatePoint, () => {});
 
 export default router;
