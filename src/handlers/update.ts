@@ -123,8 +123,7 @@ export const deleteUpdate = async (req, res, next) => {
         const match = updates.find(update => update.id === req.params.id);
 
         if (!match) {
-            // handle
-            return;
+            throw new Error;
         }
         
         try {
